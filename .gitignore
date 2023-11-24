@@ -3,3 +3,4 @@ _bin
 _build
 _lib
 .vs
+resources/aseprite
