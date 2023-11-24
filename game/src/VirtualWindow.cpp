@@ -4,13 +4,15 @@
 VirtualWindow::VirtualWindow() {
 	setSize(MIN_SIZE);
 	setPosition(raylib::Vector2::Zero());
+	setLayer(0);
 	TextureLibrary& textureLibrary = TextureLibrary::getInstance();
 	this->windowTexture = textureLibrary.getTexture("window");
 }
 
-VirtualWindow::VirtualWindow(raylib::Vector2 size, raylib::Vector2 position) {
+VirtualWindow::VirtualWindow(raylib::Vector2 size, raylib::Vector2 position, int layer) {
 	setSize(size);
 	setPosition(position);
+	setLayer(layer);
 	TextureLibrary& textureLibrary = TextureLibrary::getInstance();
 	this->windowTexture = textureLibrary.getTexture("window");
 }
@@ -23,26 +25,34 @@ void VirtualWindow::setSize(raylib::Vector2 size) {
 	this->size = size;
 
 	if (size.x < MIN_SIZE.x) {
-		this->size = MIN_SIZE.x;
+		this->size.x = MIN_SIZE.x;
 	}
 
 	if (size.y < MIN_SIZE.y) {
-		this->size = MIN_SIZE.y;
+		this->size.y = MIN_SIZE.y;
 	}
 
 	interior = raylib::RenderTexture2D(size.x, size.y);
 }
 
-raylib::Vector2 VirtualWindow::getSize() {
-	return size;
+raylib::Vector2 VirtualWindow::getSize() const {
+	return this->size;
 }
 
 void VirtualWindow::setPosition(raylib::Vector2 position) {
 	this->position = position;
 }
 
-raylib::Vector2 VirtualWindow::getPosition() {
-	return position;
+raylib::Vector2 VirtualWindow::getPosition() const {
+	return this->position;
+}
+
+void VirtualWindow::setLayer(int layer) {
+	this->layer = layer;
+}
+
+int VirtualWindow::getLayer() const {
+	return this->layer;
 }
 
 void VirtualWindow::Draw() {
@@ -58,5 +68,5 @@ raylib::Camera2D& VirtualWindow::getCamera() {
 	return camera;
 }
 
-const raylib::Vector2 VirtualWindow::MIN_SIZE = { 8, 11 };
-const NPatchInfo VirtualWindow::NPATCH = { raylib::Rectangle(0, 0, 9, 12), 4, 7, 4, 4, NPATCH_NINE_PATCH };
+const raylib::Vector2 VirtualWindow::MIN_SIZE = { 17, 16 };
+const NPatchInfo VirtualWindow::NPATCH = { raylib::Rectangle(0, 0, 18, 17), 6, 10, 11, 6, NPATCH_NINE_PATCH };
