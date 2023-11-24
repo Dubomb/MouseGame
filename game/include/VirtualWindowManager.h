@@ -15,10 +15,10 @@ public:
 
 	static VirtualWindowManager& getInstance();
 
-	bool createVirtualWindow(std::string name);
-	bool createVirtualWindow(std::string name, raylib::Vector2 size, raylib::Vector2 position, int layer);
-	VirtualWindow* getVirtualWindow(std::string name);
-	void closeVirtualWindow(std::string name);
+	bool createVirtualWindow(const std::string& name);
+	bool createVirtualWindow(const std::string& name, const raylib::Vector2 size, const raylib::Vector2 position, const int layer);
+	VirtualWindow* getVirtualWindow(const std::string& name);
+	void closeVirtualWindow(const std::string& name);
 
 	void drawWindows();
 

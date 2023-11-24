@@ -17,7 +17,7 @@ VirtualWindowManager& VirtualWindowManager::getInstance() {
 	return instance;
 }
 
-bool VirtualWindowManager::createVirtualWindow(std::string name) {
+bool VirtualWindowManager::createVirtualWindow(const std::string& name) {
 	VirtualWindow* window = new VirtualWindow();
 
 	windows[name] = window;
@@ -26,7 +26,7 @@ bool VirtualWindowManager::createVirtualWindow(std::string name) {
 	return true;
 }
 
-bool VirtualWindowManager::createVirtualWindow(std::string name, raylib::Vector2 size, raylib::Vector2 position, int layer) {
+bool VirtualWindowManager::createVirtualWindow(const std::string& name, const raylib::Vector2 size, const raylib::Vector2 position, const int layer) {
 	VirtualWindow* window = new VirtualWindow(size, position, layer);
 	
 	windows[name] = window;
@@ -35,11 +35,15 @@ bool VirtualWindowManager::createVirtualWindow(std::string name, raylib::Vector2
 	return true;
 }
 
-VirtualWindow* VirtualWindowManager::getVirtualWindow(std::string name) {
+VirtualWindow* VirtualWindowManager::getVirtualWindow(const std::string& name) {
 	return windows[name];
 }
 
-void VirtualWindowManager::closeVirtualWindow(std::string name) {
+void VirtualWindowManager::closeVirtualWindow(const std::string& name) {
+	if (windows.count(name) != 1) {
+		return;
+	}
+
 	draw_windows.erase(windows[name]);
 	delete windows[name];
 	windows.erase(name);
