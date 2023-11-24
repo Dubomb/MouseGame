@@ -1,5 +1,7 @@
 #include "VirtualWindowManager.h"
 
+#include <iostream>
+
 VirtualWindowManager::VirtualWindowManager() {
 
 }
@@ -19,14 +21,16 @@ bool VirtualWindowManager::createVirtualWindow(std::string name) {
 	VirtualWindow* window = new VirtualWindow();
 
 	windows[name] = window;
+	draw_windows.insert(window);
 
 	return true;
 }
 
-bool VirtualWindowManager::createVirtualWindow(std::string name, raylib::Vector2 size, raylib::Vector2 position) {
-	VirtualWindow* window = new VirtualWindow(size, position);
-
+bool VirtualWindowManager::createVirtualWindow(std::string name, raylib::Vector2 size, raylib::Vector2 position, int layer) {
+	VirtualWindow* window = new VirtualWindow(size, position, layer);
+	
 	windows[name] = window;
+	draw_windows.insert(window);
 
 	return true;
 }
@@ -36,12 +40,13 @@ VirtualWindow* VirtualWindowManager::getVirtualWindow(std::string name) {
 }
 
 void VirtualWindowManager::closeVirtualWindow(std::string name) {
+	draw_windows.erase(windows[name]);
 	delete windows[name];
 	windows.erase(name);
 }
 
 void VirtualWindowManager::drawWindows() {
-	for (const auto& pair : windows) {
-		pair.second->Draw();
+	for (VirtualWindow* w : draw_windows) {
+		w->Draw();
 	}
 }
