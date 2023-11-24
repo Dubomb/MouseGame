@@ -1,5 +1,4 @@
 #include "TextureLibrary.h"
-#include <iostream>
 
 TextureLibrary::TextureLibrary() {
 
@@ -8,7 +7,6 @@ TextureLibrary::TextureLibrary() {
 TextureLibrary::~TextureLibrary() {
 	for (const auto& pair : textures) {
 		delete pair.second;
-		std::cout << "deleted!" << std::endl;
 	}
 }
 
