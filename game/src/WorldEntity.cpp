@@ -1,12 +1,12 @@
 #include "WorldEntity.h"
 
 WorldEntity::WorldEntity()
-	: position(raylib::Vector2::Zero()), scale(raylib::Vector2::One()), rotation(0.0f), parent(nullptr) {
+	: position(raylib::Vector2::Zero()), rotation(0.0f), parent(nullptr) {
 
 }
 
-WorldEntity::WorldEntity(const raylib::Vector2 position, const raylib::Vector2 scale, const float rotation, WorldEntity* parent = nullptr) 
-	: position(position), scale(scale), rotation(rotation), parent(parent) {
+WorldEntity::WorldEntity(const raylib::Vector2 position, const float rotation, WorldEntity* parent = nullptr) 
+	: position(position), rotation(rotation), parent(parent) {
 
 }
 
@@ -36,14 +36,6 @@ void WorldEntity::translate(const raylib::Vector2 translation) {
 	for (WorldEntity* const child : children) {
 		child->translate(translation);
 	}
-}
-
-void WorldEntity::setScale(const raylib::Vector2 scale) {
-	this->scale = scale;
-}
-
-raylib::Vector2 WorldEntity::getScale() {
-	return this->scale;
 }
 
 void WorldEntity::setRotation(const float rotation) {
