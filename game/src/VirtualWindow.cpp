@@ -68,5 +68,5 @@ raylib::Camera2D& VirtualWindow::getCamera() {
 	return camera;
 }
 
-const raylib::Vector2 VirtualWindow::MIN_SIZE = { 17, 16 };
-const NPatchInfo VirtualWindow::NPATCH = { raylib::Rectangle(0, 0, 18, 17), 6, 10, 11, 6, NPATCH_NINE_PATCH };
+const raylib::Vector2 VirtualWindow::MIN_SIZE = { 13, 21 };
+const NPatchInfo VirtualWindow::NPATCH = { raylib::Rectangle(0, 0, 13, 21), 6, 12, 6, 8, NPATCH_NINE_PATCH };
