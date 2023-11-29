@@ -49,9 +49,11 @@ const raylib::Color& RenderEntity::getTint() {
 	return tint;
 }
 
-#include <iostream>
+void RenderEntity::update() {
+	if (sprite == nullptr) {
+		return;
+	}
 
-void RenderEntity::Draw() {
 	raylib::Vector2 textureSize = sprite->GetSize();
 
 	raylib::Rectangle src(raylib::Vector2::Zero(), textureSize);
@@ -59,8 +61,6 @@ void RenderEntity::Draw() {
 	textureSize = raylib::Vector2(textureSize.x * scale.x, textureSize.y * scale.y);
 	raylib::Vector2 center = raylib::Vector2(textureSize.x * 0.5f, textureSize.y * 0.5f);
 	raylib::Rectangle dest(position, textureSize);
-
-	std::cout << "x: " << dest.x << " y: " << dest.y << " w: " << dest.width << " h: " << dest.height << std::endl;
 
 	sprite->Draw(src, dest, center, rotation, tint);
 }

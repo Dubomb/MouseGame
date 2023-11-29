@@ -17,7 +17,7 @@ public:
 	void setTint(const raylib::Color color);
 	const raylib::Color& getTint();
 
-	void Draw();
+	void update() override;
 
 private:
 	raylib::Vector2 scale;

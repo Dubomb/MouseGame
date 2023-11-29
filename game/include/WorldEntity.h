@@ -24,6 +24,8 @@ public:
 	WorldEntity* getParent();
 	bool isChild(WorldEntity* const child);
 
+	virtual void update() = 0;
+
 private:
 	void addChild(WorldEntity* const child);
 	void removeChild(WorldEntity* const child);

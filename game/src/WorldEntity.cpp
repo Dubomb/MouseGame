@@ -96,6 +96,10 @@ bool WorldEntity::isChild(WorldEntity* const child) {
 	return false;
 }
 
+void WorldEntity::update() {
+
+}
+
 void WorldEntity::addChild(WorldEntity* const child) {
 	children.insert(child);
 }
