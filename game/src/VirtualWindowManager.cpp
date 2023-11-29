@@ -21,7 +21,7 @@ bool VirtualWindowManager::createVirtualWindow(const std::string& name) {
 	VirtualWindow* window = new VirtualWindow();
 
 	windows[name] = window;
-	draw_windows.insert(window);
+	drawingWindows.insert(window);
 
 	return true;
 }
@@ -30,7 +30,7 @@ bool VirtualWindowManager::createVirtualWindow(const std::string& name, const ra
 	VirtualWindow* window = new VirtualWindow(size, position, layer);
 	
 	windows[name] = window;
-	draw_windows.insert(window);
+	drawingWindows.insert(window);
 
 	return true;
 }
@@ -44,19 +44,19 @@ void VirtualWindowManager::closeVirtualWindow(const std::string& name) {
 		return;
 	}
 
-	draw_windows.erase(windows[name]);
+	drawingWindows.erase(windows[name]);
 	delete windows[name];
 	windows.erase(name);
 }
 
 void VirtualWindowManager::drawWindowInteriors() {
-	for (VirtualWindow* w : draw_windows) {
+	for (VirtualWindow* w : drawingWindows) {
 		w->draw_window_interior();
 	}
 }
 
 void VirtualWindowManager::drawWindows() {
-	for (VirtualWindow* w : draw_windows) {
+	for (VirtualWindow* w : drawingWindows) {
 		w->update();
 	}
 }
