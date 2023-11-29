@@ -20,6 +20,7 @@ public:
 	VirtualWindow* getVirtualWindow(const std::string& name);
 	void closeVirtualWindow(const std::string& name);
 
+	void drawWindowInteriors();
 	void drawWindows();
 
 private:

@@ -49,8 +49,14 @@ void VirtualWindowManager::closeVirtualWindow(const std::string& name) {
 	windows.erase(name);
 }
 
+void VirtualWindowManager::drawWindowInteriors() {
+	for (VirtualWindow* w : draw_windows) {
+		w->draw_window_interior();
+	}
+}
+
 void VirtualWindowManager::drawWindows() {
 	for (VirtualWindow* w : draw_windows) {
-		w->Draw();
+		w->update();
 	}
 }
