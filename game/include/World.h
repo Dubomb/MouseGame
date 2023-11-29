@@ -16,8 +16,13 @@ public:
 		return entity;
 	}
 
+	raylib::Color getBackgroundColor();
+	void setBackgroundColor(raylib::Color backgroundColor);
+
 	void updateWorld();
 
 private:
 	std::unordered_set<WorldEntity*> entities;
+
+	raylib::Color backgroundColor;
 };

@@ -111,7 +111,7 @@ void VirtualWindow::draw_window_interior() {
 
 	BeginMode2D(camera);
 	
-	ClearBackground(raylib::Color::Gray());
+	ClearBackground(world->getBackgroundColor());
 
 	if (world != nullptr) {
 		world->updateWorld();
