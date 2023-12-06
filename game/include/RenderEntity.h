@@ -19,7 +19,7 @@ public:
 
 	void update() override;
 
-private:
+protected:
 	raylib::Vector2 scale;
 	raylib::Texture2D* sprite;
 	raylib::Color tint;
