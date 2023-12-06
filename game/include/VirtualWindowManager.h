@@ -33,5 +33,5 @@ private:
 	};
 
 	std::unordered_map<std::string, VirtualWindow*> windows;
-	std::set<VirtualWindow*, VirtualWindowCompare> drawingWindows;
+	std::multiset<VirtualWindow*, VirtualWindowCompare> drawingWindows;
 };
