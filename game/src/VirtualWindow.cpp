@@ -9,7 +9,6 @@ VirtualWindow::VirtualWindow() {
 	this->windowTexture = textureLibrary.getTexture("window");
 	this->interior = raylib::RenderTexture2D();
 	setCameraTarget(raylib::Vector2(0, 0));
-	setCameraOffset(raylib::Vector2(interior.GetTexture().GetSize()) * 0.5f);
 	setCameraRotation(0.0f);
 	setCameraZoom(1.0f);
 	setWorld(nullptr);
@@ -32,18 +31,17 @@ VirtualWindow::~VirtualWindow() {
 }
 
 void VirtualWindow::setSize(raylib::Vector2 size) {
-	this->size = size;
-
 	if (size.x < MIN_SIZE.x) {
-		this->size.x = MIN_SIZE.x;
+		size.x = MIN_SIZE.x;
 	}
 
 	if (size.y < MIN_SIZE.y) {
-		this->size.y = MIN_SIZE.y;
+		size.y = MIN_SIZE.y;
 	}
 
-	interior = raylib::RenderTexture2D(size.x - TOP_LEFT.x - BOT_RIGHT.x + 1, size.y - TOP_LEFT.y - BOT_RIGHT.y + 1);
-	setCameraOffset(raylib::Vector2(interior.GetTexture().GetSize()) * 0.5f);
+	interior = raylib::RenderTexture2D(size.x, size.y);
+	this->size.x = size.x + TOP_LEFT.x + BOT_RIGHT.x;
+	this->size.y = size.y + TOP_LEFT.y + BOT_RIGHT.y;
 }
 
 raylib::Vector2 VirtualWindow::getSize() const {
@@ -107,6 +105,8 @@ float VirtualWindow::getCameraZoom() {
 }
 
 void VirtualWindow::draw_window_interior() {
+	setCameraOffset(raylib::Vector2(interior.GetTexture().GetSize()) * 0.5f);
+
 	BeginTextureMode(interior);
 
 	BeginMode2D(camera);
@@ -135,7 +135,7 @@ raylib::Camera2D& VirtualWindow::getCamera() {
 	return camera;
 }
 
-const raylib::Vector2 VirtualWindow::MIN_SIZE = { 13, 21 };
-const raylib::Vector2 VirtualWindow::TOP_LEFT = { 6, 12 };
+const raylib::Vector2 VirtualWindow::MIN_SIZE = { 13, 25 };
+const raylib::Vector2 VirtualWindow::TOP_LEFT = { 6, 16 };
 const raylib::Vector2 VirtualWindow::BOT_RIGHT = { 6, 8 };
-const NPatchInfo VirtualWindow::NPATCH = { raylib::Rectangle(0, 0, 13, 21), TOP_LEFT.x, TOP_LEFT.y, BOT_RIGHT.x, BOT_RIGHT.y, NPATCH_NINE_PATCH };
+const NPatchInfo VirtualWindow::NPATCH = { raylib::Rectangle(raylib::Vector2::Zero(), VirtualWindow::MIN_SIZE), TOP_LEFT.x, TOP_LEFT.y, BOT_RIGHT.x, BOT_RIGHT.y, NPATCH_NINE_PATCH };
