@@ -8,15 +8,13 @@
 class VirtualWindow {
 public:
 	VirtualWindow();
-	VirtualWindow(raylib::Vector2 size, raylib::Vector2 position, int layer);
+	VirtualWindow(raylib::Vector2 size, raylib::Vector2 position);
 	~VirtualWindow();
 
 	void setSize(raylib::Vector2 size);
 	raylib::Vector2 getSize() const;
 	void setPosition(raylib::Vector2 position);
 	raylib::Vector2 getPosition() const;
-	void setLayer(int layer);
-	int getLayer() const;
 
 	void setWorld(World* const world);
 	World* getWorld();
@@ -48,8 +46,6 @@ private:
 	
 	raylib::RenderTexture2D interior;
 	raylib::Camera2D camera;
-
-	int layer;
 
 	World* world;
 };

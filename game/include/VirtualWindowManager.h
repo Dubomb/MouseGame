@@ -3,6 +3,7 @@
 #include <string>
 #include <unordered_map>
 #include <set>
+#include <map>
 #include <raylib.h>
 #include <raylib-cpp.hpp>
 
@@ -15,7 +16,6 @@ public:
 
 	static VirtualWindowManager& getInstance();
 
-	bool createVirtualWindow(const std::string& name);
 	bool createVirtualWindow(const std::string& name, const raylib::Vector2 size, const raylib::Vector2 position, const int layer);
 	VirtualWindow* getVirtualWindow(const std::string& name);
 	void closeVirtualWindow(const std::string& name);
@@ -25,13 +25,6 @@ public:
 
 private:
 
-	class VirtualWindowCompare {
-	public:
-		bool operator()(const VirtualWindow* lhs, const VirtualWindow* rhs) const {
-			return lhs->getLayer() < rhs->getLayer();
-		}
-	};
-
 	std::unordered_map<std::string, VirtualWindow*> windows;
-	std::multiset<VirtualWindow*, VirtualWindowCompare> drawingWindows;
+	std::multimap<int, VirtualWindow*> drawingWindows;
 };

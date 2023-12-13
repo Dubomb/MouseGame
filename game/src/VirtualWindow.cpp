@@ -4,7 +4,6 @@
 VirtualWindow::VirtualWindow() {
 	setSize(MIN_SIZE);
 	setPosition(raylib::Vector2::Zero());
-	setLayer(0);
 	TextureLibrary& textureLibrary = TextureLibrary::getInstance();
 	this->windowTexture = textureLibrary.getTexture("window");
 	this->interior = raylib::RenderTexture2D();
@@ -14,10 +13,9 @@ VirtualWindow::VirtualWindow() {
 	setWorld(nullptr);
 }
 
-VirtualWindow::VirtualWindow(raylib::Vector2 size, raylib::Vector2 position, int layer) {
+VirtualWindow::VirtualWindow(raylib::Vector2 size, raylib::Vector2 position) {
 	setSize(size);
 	setPosition(position);
-	setLayer(layer);
 	TextureLibrary& textureLibrary = TextureLibrary::getInstance();
 	this->windowTexture = textureLibrary.getTexture("window");
 	setCameraTarget(raylib::Vector2(0, 0));
@@ -54,14 +52,6 @@ void VirtualWindow::setPosition(raylib::Vector2 position) {
 
 raylib::Vector2 VirtualWindow::getPosition() const {
 	return this->position;
-}
-
-void VirtualWindow::setLayer(int layer) {
-	this->layer = layer;
-}
-
-int VirtualWindow::getLayer() const {
-	return this->layer;
 }
 
 void VirtualWindow::setWorld(World* const world) {
