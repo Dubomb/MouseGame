@@ -6,8 +6,8 @@ World::World()
 }
 
 World::~World() {
-	for (WorldEntity* entity : entities) {
-		delete entity;
+	for (auto pair : entities) {
+		delete pair.second;
 	}
 }
 
@@ -20,7 +20,7 @@ void World::setBackgroundColor(raylib::Color backgroundColor) {
 }
 
 void World::updateWorld() {
-	for (WorldEntity* entity : entities) {
-		entity->update();
+	for (auto pair : entities) {
+		pair.second->update();
 	}
 }

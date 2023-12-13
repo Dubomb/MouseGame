@@ -1,6 +1,9 @@
 #pragma once
 
 #include <unordered_set>
+#include <set>
+#include <map>
+#include <iostream>
 
 #include "WorldEntity.h"
 
@@ -10,9 +13,9 @@ public:
 	~World();
 
 	template <class T>
-	T* createEntity() {
+	T* createEntity(const int layer) {
 		T* entity = new T();
-		entities.insert(entity);
+		entities.insert(std::make_pair(layer, entity));
 		return entity;
 	}
 
@@ -22,7 +25,7 @@ public:
 	void updateWorld();
 
 private:
-	std::unordered_set<WorldEntity*> entities;
+	std::multimap<int, WorldEntity*> entities;
 
 	raylib::Color backgroundColor;
 };

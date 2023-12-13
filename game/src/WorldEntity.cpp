@@ -5,7 +5,7 @@ WorldEntity::WorldEntity()
 
 }
 
-WorldEntity::WorldEntity(const raylib::Vector2 position, const float rotation, WorldEntity* parent = nullptr) 
+WorldEntity::WorldEntity(const raylib::Vector2 position, const float rotation, WorldEntity* parent = nullptr)
 	: position(position), rotation(rotation), parent(parent) {
 
 }
